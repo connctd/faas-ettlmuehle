@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	handler "github.com/openfaas-incubator/go-function-sdk"
+	handler "github.com/openfaas/templates-sdk/go-http"
 	log "github.com/sirupsen/logrus"
 )
 

@@ -1,7 +1,7 @@
 .PHONY: build push deploy
 
 build:
-	faas-cli build -f ettlmuehle-fn.yml
+	faas-cli build -f ettlmuehle-fn.yml --build-arg GO111MODULE=on
 
 push:	
 	faas-cli push -f ettlmuehle-fn.yml

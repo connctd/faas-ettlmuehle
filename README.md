@@ -6,7 +6,7 @@ This function generates dummy waterlevel values depending on day of year and day
 
 You need to download the golang http template first
 
-`faas-cli template store pull golang-http`
+`faas template pull https://github.com/openfaas-incubator/golang-http-template`
 
 ## How to build and deploy
 
