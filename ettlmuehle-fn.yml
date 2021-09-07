@@ -1,0 +1,17 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  ettlmuehle-fn:
+    lang: golang-http
+    handler: ./ettlmuehle-fn
+    image: "eu.gcr.io/molten-mariner-162315/connctd/ettlmuehle-fn:v0.0.1"
+    environment:
+      ettlmuehle-client-id: f2075da6-e635-4dd6-9c2e-0f27d7f44c75
+      base-url: https://api.connctd.io
+      gateway-url: http://gateway.openfaas:8080
+      thing-id-water-level-sensor-one: 477d7886-55c5-4f6e-9433-ace4bf257fea
+      thing-id-water-level-sensor-two: cca72a25-0c20-4d8c-8c7b-a4ca88c5522d
+    secrets:
+      - ettlmuehle-client-secret

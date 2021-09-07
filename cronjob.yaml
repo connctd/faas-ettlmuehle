@@ -1,0 +1,34 @@
+# Using kubernetes cron job to trigger a function every minute
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: ettlmuehle-cron
+  namespace: openfaas
+spec:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: faas-cli
+            image: openfaas/faas-cli:0.8.3
+            env:
+              - name: USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: basic-auth
+                    key: basic-auth-user
+              - name: PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: basic-auth
+                    key: basic-auth-password
+            args:
+            - /bin/sh
+            - -c
+            - echo -n $PASSWORD | faas-cli login -g http://gateway.openfaas:8080 -u $USERNAME --password-stdin && echo "verbose" | faas-cli invoke ettlmuehle-fn -g http://gateway.openfaas:8080
+          restartPolicy: OnFailure
