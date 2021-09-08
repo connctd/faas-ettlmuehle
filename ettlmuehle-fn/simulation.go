@@ -18,8 +18,8 @@ func simulateSensors(connctdClient APIClient) {
 	thingValueOne := simulateWaterSensor(waterLevelSensorOne, currTime)
 	thingValueTwo := simulateWaterSensor(waterLevelSensorTwo, currTime)
 
-	connctdClient.UpdateProperty(waterLevelSensorOne, "waterlevel", "value", strconv.FormatInt(thingValueOne, 10))
-	connctdClient.UpdateProperty(waterLevelSensorTwo, "waterlevel", "value", strconv.FormatInt(thingValueTwo, 10))
+	connctdClient.UpdateProperty(waterLevelSensorOne, "waterlevel", "waterlevel", strconv.FormatInt(thingValueOne, 10))
+	connctdClient.UpdateProperty(waterLevelSensorTwo, "waterlevel", "waterlevel", strconv.FormatInt(thingValueTwo, 10))
 }
 
 func simulateWaterSensor(thingID string, dayTime time.Time) int64 {

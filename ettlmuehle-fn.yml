@@ -6,12 +6,12 @@ functions:
   ettlmuehle-fn:
     lang: golang-http
     handler: ./ettlmuehle-fn
-    image: "eu.gcr.io/molten-mariner-162315/connctd/ettlmuehle-fn:v0.0.2"
+    image: "eu.gcr.io/molten-mariner-162315/connctd/ettlmuehle-fn:v0.0.3"
     environment:
-      ettlmuehle-client-id: f2075da6-e635-4dd6-9c2e-0f27d7f44c75
+      ettlmuehle-client-id: 2f8e46f9-fd09-4f54-8c32-5616d4e10d4d
       base-url: https://api.connctd.io
       gateway-url: http://gateway.openfaas:8080
-      thing-id-water-level-sensor-one: 477d7886-55c5-4f6e-9433-ace4bf257fea
-      thing-id-water-level-sensor-two: cca72a25-0c20-4d8c-8c7b-a4ca88c5522d
+      thing-id-water-level-sensor-one: 971b30bc-de96-4298-8a0b-b8c5456b9ebf
+      thing-id-water-level-sensor-two: faa30516-b38b-46f3-9b99-d9d5704355ec
     secrets:
       - ettlmuehle-client-secret
