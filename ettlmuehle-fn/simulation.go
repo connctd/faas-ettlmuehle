@@ -25,25 +25,25 @@ func simulateSensors(connctdClient APIClient) {
 func simulateWaterSensor(thingID string, dayTime time.Time) int64 {
 	// stretched and shifted sinus wave where max (y=2) is at around x=1 and x=12 and min (y=0) is at around x=7
 	// meaning: at around month 7 (july) water level is lowest (dry sommer, wet winter)
-	yeartimeMultiplier := math.Sin(float64(dayTime.Month())*0.55+3.14/2) + 1
+	yeartimeMultiplier := math.Sin(float64(dayTime.YearDay())*0.017+3.14/2.0) + 1.0
 
 	// something between 0 (summer) and 1 (winter)
-	yeartimeMultiplier = yeartimeMultiplier / 2
+	yeartimeMultiplier = yeartimeMultiplier / 2.0
 
 	// stretched and shifted sinus wave where max (y=2) is at around x=0 and x=24 and min (y=1) is at around x=12
 	// meaning: water level drops until middle of day and then raises again (wet night, dry day)
-	daytimeMultiplier := math.Sin(float64(dayTime.Hour())*0.26+3.14/2) + 1
+	daytimeMultiplier := math.Sin(float64(dayTime.Hour())*0.26+3.14/2.0) + 1.0
 
 	// something between 0 (middle of day) and 1 (night time)
 	daytimeMultiplier = daytimeMultiplier / 2.0
 
 	//minLevel := 0.0
 	maxLevel := 1500.0
-	perDayWaterLevelVariation := 50.0 // potential variation (night - day)
+	perDayWaterLevelVariation := 20.0 // potential variation (night - day)
 
 	yeartimeWaterLevel := yeartimeMultiplier * maxLevel
 
-	simulatedValue := randFloat(yeartimeWaterLevel-(yeartimeWaterLevel/10), yeartimeWaterLevel, 2) // 0 und 0
+	simulatedValue := randFloat(yeartimeWaterLevel-(yeartimeWaterLevel/100), yeartimeWaterLevel, 2) // 0 und 0
 	simulatedValue += (daytimeMultiplier * perDayWaterLevelVariation) / 10
 
 	return int64(simulatedValue)

@@ -6,7 +6,7 @@ functions:
   ettlmuehle-fn:
     lang: golang-http
     handler: ./ettlmuehle-fn
-    image: "eu.gcr.io/molten-mariner-162315/connctd/ettlmuehle-fn:v0.0.1"
+    image: "eu.gcr.io/molten-mariner-162315/connctd/ettlmuehle-fn:v0.0.2"
     environment:
       ettlmuehle-client-id: f2075da6-e635-4dd6-9c2e-0f27d7f44c75
       base-url: https://api.connctd.io
